@@ -8,7 +8,7 @@
       class="w-25 mx-1">
       <b-form-select
         @change="changeStep"
-        v-model="step"
+        :value="step"
         :options="steps"/>
     </b-input-group>
   </b-button-toolbar>
@@ -18,7 +18,6 @@
 export default {
   data () {
     return {
-      selected: this.$store.state.step,
       steps: [
         { value: 1000000, text: '1 MHz' },
         { value: 20000, text: '20 kHz' },

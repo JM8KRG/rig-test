@@ -28,6 +28,12 @@
               <interval/>
             </b-col>
           </b-row>
+
+          <b-row>
+            <b-col>
+              <level/>
+            </b-col>
+          </b-row>
         </b-card>
       </b-col>
 
@@ -40,6 +46,7 @@
 import Band from './Band'
 import Mode from './Mode'
 import Interval from './Interval'
+import Level from './Level'
 
 export default {
   name: 'HelloWorld',
@@ -51,7 +58,8 @@ export default {
   components: {
     Band,
     Mode,
-    Interval
+    Interval,
+    Level
   }
 }
 </script>

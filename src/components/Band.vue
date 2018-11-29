@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     changeFreq (val) {
-      this.freq = val
       this.$store.commit('updateFreq', val)
     }
   },

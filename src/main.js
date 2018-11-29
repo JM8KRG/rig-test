@@ -1,32 +1,23 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import Vuex from 'vuex'
+import store from './store/store'
 import App from './App'
 import router from './router'
+import VueSocketIO from 'vue-socket.io'
 
 Vue.config.productionTip = false
 
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
-  state: {
-    freq: 145000000,
-    mode: 'SSB',
-    step: 25000
-  },
-  mutations: {
-    updateFreq (state, newFreq) {
-      state.freq = newFreq
-    },
-    updateMode (state, newMode) {
-      state.mode = newMode
-    },
-    updateStep (state, newStep) {
-      state.step = newStep
+Vue.use(
+  new VueSocketIO({
+    connection: 'http://localhost:3000',
+    vuex: {
+      store,
+      actionPrefix: 'SOCKET_',
+      mutationPrefix: 'SOCKET_'
     }
-  }
-})
+  })
+)
 
 /* eslint-disable no-new */
 new Vue({
