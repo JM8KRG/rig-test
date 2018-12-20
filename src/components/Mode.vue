@@ -1,23 +1,23 @@
 <template>
-  <b-form-select
-    @change="changeMode"
-    :value="mode"
-    size="sm"
-    :options="modes"/>
+  <b-form-select @change="changeMode" :value="mode" size="sm" :options="modes"/>
 </template>
 
 <script>
 export default {
   data () {
     return {
-      mode: this.$store.state.mode,
-      modes: ['SSB', 'CW', 'AM', 'FM']
+      modes: ['AM', 'FM', 'CW', 'USB', 'LSB']
     }
   },
   methods: {
     changeMode (val) {
-      this.mode = val
       this.$store.commit('updateMode', val)
+      this.$socket.emit('command', 'set_mode ' + val)
+    }
+  },
+  computed: {
+    mode () {
+      return this.$store.state.mode
     }
   }
 }

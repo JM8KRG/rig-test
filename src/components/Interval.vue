@@ -4,12 +4,8 @@
       <b-button @click="down">←</b-button>
       <b-button @click="up">→</b-button>
     </b-button-group>
-    <b-input-group
-      class="w-25 mx-1">
-      <b-form-select
-        @change="changeStep"
-        :value="step"
-        :options="steps"/>
+    <b-input-group class="w-25 mx-1">
+      <b-form-select @change="changeStep" :value="step" :options="steps"/>
     </b-input-group>
   </b-button-toolbar>
 </template>
@@ -35,10 +31,26 @@ export default {
   },
   methods: {
     up () {
-      this.$store.commit('updateFreq', this.$store.state.freq + this.$store.state.step)
+      let freq = this.$store.state.freq + this.$store.state.step
+
+      // 周波数が999MHz以上なら999MHzに変更する
+      if (freq > 440000000) {
+        freq = 440000000
+      }
+
+      this.$socket.emit('command', 'set_freq ' + freq)
+      this.$store.commit('updateFreq', freq)
     },
     down () {
-      this.$store.commit('updateFreq', this.$store.state.freq - this.$store.state.step)
+      let freq = this.$store.state.freq - this.$store.state.step
+
+      // 周波数が1.8MHZ未満なら1.8MHzに変更する
+      if (freq < 1800000) {
+        freq = 1800000
+      }
+
+      this.$socket.emit('command', 'set_freq ' + freq)
+      this.$store.commit('updateFreq', freq)
     },
     changeStep (val) {
       this.$store.commit('updateStep', val)
@@ -46,7 +58,11 @@ export default {
   },
   computed: {
     step () {
-      if (this.$store.state.mode === 'SSB' || this.$store.state.mode === 'CW') {
+      if (
+        this.$store.state.mode === 'USB' ||
+        this.$store.state.mode === 'LSB' ||
+        this.$store.state.mode === 'CW'
+      ) {
         this.$store.commit('updateStep', 10)
         return 10
       }

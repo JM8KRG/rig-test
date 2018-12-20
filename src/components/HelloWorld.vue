@@ -2,12 +2,8 @@
   <div>
     <b-row>
       <b-col>
-        <b-card
-          header-tag="header"
-          footer-tag="footer">
-          <h6
-            slot="header"
-            class="mb-0">IC-9100</h6>
+        <b-card header-tag="header" footer-tag="footer">
+          <h6 slot="header" class="mb-0">IC-9100</h6>
 
           <b-row>
             <b-col>
@@ -37,22 +33,26 @@
         </b-card>
       </b-col>
 
-      <b-col><h2>/dev/ttyUSB0</h2></b-col>
+      <b-col>
+        <h2>/dev/ttyUSB0</h2>
+      </b-col>
     </b-row>
   </div>
 </template>
 
 <script>
-import Band from './Band'
-import Mode from './Mode'
-import Interval from './Interval'
-import Level from './Level'
+import Band from "./Band";
+import Mode from "./Mode";
+import Interval from "./Interval";
+import Level from "./Level";
 
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   computed: {
-    freq () {
-      return this.$store.state.freq.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1.')
+    freq() {
+      return this.$store.state.freq
+        .toString()
+        .replace(/(\d)(?=(\d{3})+$)/g, "$1.");
     }
   },
   components: {
@@ -61,7 +61,7 @@ export default {
     Interval,
     Level
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
