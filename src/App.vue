@@ -20,10 +20,15 @@ export default {
       console.log("client connected.");
     },
     command: function(data) {
+      console.log(data);
       this.$store.commit("updateFreq", data.freq);
       this.$store.commit("updateMode", data.mode);
       this.$store.commit("updateSql", data.sql);
       this.$store.commit("updateSmeter", data.smeter);
+      this.$store.commit("updatePtt", data.ptt);
+    },
+    smeter: function(smeter) {
+      this.$store.commit("updateSmeter", smeter);
     }
   }
 };

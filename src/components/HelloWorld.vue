@@ -4,6 +4,10 @@
       <b-col>
         <b-card header-tag="header" footer-tag="footer">
           <h6 slot="header" class="mb-0">IC-9100</h6>
+          <h6 slot="footer" class="mb-0">
+            <ptt/>
+            <squelch/>
+          </h6>
 
           <b-row>
             <b-col>
@@ -45,6 +49,8 @@ import Band from "./Band";
 import Mode from "./Mode";
 import Interval from "./Interval";
 import Level from "./Level";
+import Ptt from "./Ptt";
+import Squelch from "./Squelch";
 
 export default {
   name: "HelloWorld",
@@ -59,7 +65,9 @@ export default {
     Band,
     Mode,
     Interval,
-    Level
+    Level,
+    Ptt,
+    Squelch
   }
 };
 </script>

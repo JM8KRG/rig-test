@@ -9,7 +9,8 @@ export default new Vuex.Store({
     mode: "",
     sql: 0,
     step: 25000,
-    smeter: 0
+    smeter: 0,
+    ptt: 0
   },
   mutations: {
     updateFreq(state, newFreq) {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     updateSmeter(state, newSmeter) {
       state.smeter = newSmeter;
+    },
+    updatePtt(state, newPtt) {
+      state.ptt = newPtt;
     }
   }
 });

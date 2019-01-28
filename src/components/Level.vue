@@ -9,7 +9,10 @@
 export default {
   computed: {
     smeter() {
-      return this.$store.state.smeter;
+      if (this.$store.state.smeter > 0) {
+        return this.$store.state.smeter;
+      }
+      return 0;
     }
   }
 };
